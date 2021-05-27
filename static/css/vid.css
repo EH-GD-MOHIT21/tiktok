@@ -1,0 +1,141 @@
+button {
+    background: none;
+    outline: none;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+}
+
+video {
+    height: 98vh;
+    width: 99vw;
+}
+
+.descbtn {
+    position: absolute;
+    top: 35%;
+    right: 2%;
+    transform: translate(-69%, -50%);
+}
+
+.hbtn {
+    position: absolute;
+    top: 45%;
+    right: 2%;
+    transform: translate(-50%, -50%);
+}
+
+.cbtn {
+    position: absolute;
+    top: 55%;
+    right: 2%;
+    transform: translate(-50%, -50%);
+}
+
+.shbtn {
+    position: absolute;
+    top: 65%;
+    right: 2%;
+    transform: translate(-50%, -50%);
+}
+
+.addvid {
+    position: absolute;
+    top: 75%;
+    right: 2%;
+    transform: translate(-50%, -50%);
+}
+
+.next {
+    position: absolute;
+    top: 20%;
+    right: 2%;
+    transform: translate(-69%, -50%);
+}
+
+.prev {
+    position: absolute;
+    top: 16.5%;
+    left: 2%;
+}
+
+.extra {
+    color: red;
+}
+
+
+/* TOOL TIP */
+
+.tooltipc {
+    display: inline-block;
+    left: 42%;
+}
+
+.tooltipc .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.tooltipc .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltipc:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+@media (max-width:600px) {
+    .shbtn,
+    .next,
+    .cbtn,
+    .hbtn,
+    .descbtn,
+    .addvid {
+        right: -1%
+    }
+}
+
+.offcanvas-bottom {
+    height: 60%;
+}
+
+.comment p {
+    margin-left: 60px;
+}
+
+.comment {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.16);
+    margin-top: 5px;
+}
+
+@media(max-width:500px) {
+    .comment p {
+        margin-left: 30px;
+    }
+}
+
+.offcanvas-body textarea {
+    width: 100%;
+    height: 150px;
+}

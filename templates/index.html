@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon.svg' %}" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body onload="init();" style="background: #58B19F;">
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong>
+        <button type="button" class="close" id="showri8" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true" id="clbtnm">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+    <form action="/post/videobyuser/mishratiktok" enctype="multipart/form-data" method="POST">
+        <div class="title">
+            <h1>Nested TikTok</h1>
+        </div>
+        <div class="title">
+            <input type="text" name="title" id="title" autocomplete="off" placeholder="Enter Title for video" required>
+        </div>
+        <span>Remaining: <span id="valrem0">100</span></span>
+        <div class="file">
+            <input type="file" name="video" accept="video/mp4,video/x-m4v,video/*" required>
+        </div>
+        <div class="desc">
+            <textarea rows="4" name="desc" style="height:1em;width:90%" id="text" placeholder="Enter Description for your video " required></textarea>
+        </div>
+        <span>Remaining: <span id="valrem">200</span></span>
+        <a href="/">Go to home</a>
+        <div class="btncnt">
+            <button type="submit" class="btn btn-outline-dark">Upload</button>
+        </div>
+    </form>
+</body>
+<script>
+    var observe;
+    if (window.attachEvent) {
+        observe = function(element, event, handler) {
+            element.attachEvent('on' + event, handler);
+        };
+    } else {
+        observe = function(element, event, handler) {
+            element.addEventListener(event, handler, false);
+        };
+    }
+
+    function init() {
+        var text = document.getElementById('text');
+
+        function resize() {
+            text.style.height = 'auto';
+            text.style.height = text.scrollHeight + 'px';
+        }
+        /* 0-timeout to get the already changed text */
+        function delayedResize() {
+            window.setTimeout(resize, 0);
+        }
+        observe(text, 'change', resize);
+        observe(text, 'cut', delayedResize);
+        observe(text, 'paste', delayedResize);
+        observe(text, 'drop', delayedResize);
+        observe(text, 'keydown', delayedResize);
+
+        text.focus();
+        text.select();
+        resize();
+    }
+    document.getElementById("text").addEventListener("input", function() {
+        wrdlmt = 200;
+        if (wrdlmt < document.getElementById("text").value.length) {
+            document.getElementById("valrem").style.color = "crimson";
+            document.getElementById("valrem").style.fontWeight = 600;
+            document.getElementById("valrem").style.fontSize = "20px";
+            document.getElementById("text").value = precontent;
+
+        } else {
+            document.getElementById("valrem").style.color = "green";
+            document.getElementById("valrem").style.fontWeight = 600;
+            document.getElementById("valrem").style.fontSize = "20px";
+        }
+        precontent = document.getElementById("text").value;
+        document.getElementById("valrem").textContent = 200 - document.getElementById("text").value.length;
+    });
+
+    document.getElementById("title").addEventListener("input", function() {
+        wrdlmt = 100;
+        if (wrdlmt < document.getElementById("title").value.length) {
+            document.getElementById("valrem0").style.color = "crimson";
+            document.getElementById("valrem0").style.fontWeight = 600;
+            document.getElementById("valrem0").style.fontSize = "20px";
+            document.getElementById("title").value = precontent;
+
+        } else {
+            document.getElementById("valrem0").style.color = "green";
+            document.getElementById("valrem0").style.fontWeight = 600;
+            document.getElementById("valrem0").style.fontSize = "20px";
+        }
+        precontent = document.getElementById("title").value;
+        document.getElementById("valrem0").textContent = 100 - document.getElementById("title").value.length;
+    });
+</script>
+
+</html>
