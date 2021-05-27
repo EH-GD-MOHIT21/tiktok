@@ -192,7 +192,7 @@ def registervideo(request):
         print(myobj.id)
 
         # return link of video to user
-        messages.success(request,f"Congratulations Your Video has been Uploaded at http://127.0.0.1:8000/filters?videoid={myobj.id}")
+        messages.success(request,f"Congratulations Your Video has been Uploaded at https://tiktokermishra.herokuapp.com/filters?videoid={myobj.id}")
         return redirect('/upload')
     else:
         return redirect('/login')
